@@ -32,38 +32,43 @@
                             for (Product product : products) {
                                 productCounter = productCounter + 1;
                                 if (productCounter == 1) {
-                                    out.print("<div class='product-one'>");
+                        %>
+                        <div class='product-one'>
+                            <%
                                 }
                                 if (newRow == true) {
-                                    out.print("<div class='clearfix'> </div>");
-                                    out.print("</div>");
-                                    out.print("<div class='product-one'>");
-                                }
 
-                                out.print("<div class='col-md-4 product-left single-left'>"
-                                        + "<div class='p-one simpleCart_shelfItem'>"
-                                        + "<a href='productDetails.php?productId='");
-                                out.print(product.getId() + "'>"
-                                        + "<img src='" + product.getImageUrl() + "' height='300' width='200'>"
-                                        + "<div class='mask'>"
-                                        + "<span>Quick View</span>"
-                                        + "</div>"
-                                        + "</a>"
-                                        + "<h4>" + product.getName() + "</h4>"
-                                        + "<p><a class='item_add' href='#'><i></i> <span class=' item_price'> $" + product.getPrice() + "</span></a></p>"
-                                        + "</div>"
-                                        + "</div>");
-
-                                if ((productCounter % 3) == 0) {
-                                    newRow = true;
-                                } else if (!((productCounter % 3) == 0)) {
-                                    newRow = false;
-                                }
-                            }
-                        %>
-
-                    </div>
+                            %>
+                            <div class='clearfix'> </div>
                         </div>
+                        <div class='product-one'>
+
+                            <%  }
+                            %>
+
+                            <div class='col-md-4 product-left single-left'>
+                                <div class='p-one simpleCart_shelfItem'>
+                                    <a href='?product=<%=product.getId()%>'>
+                                        <img src='<%=product.getImageUrl()%>' height='300' width='250'>
+                                        <div class='mask'>
+                                            <span>Quick View</span>
+                                        </div>
+                                    </a>
+                                    <h4> <%=product.getName()%> </h4>
+                                    <p><a class='item_add' href='#'><i></i> <span class=' item_price'> $ <%=product.getPrice()%></span></a></p>
+                                </div>
+                            </div>
+                            <%
+                                    if ((productCounter % 3) == 0) {
+                                        newRow = true;
+                                    } else if (!((productCounter % 3) == 0)) {
+                                        newRow = false;
+                                    }
+                                }
+                            %>
+
+                        </div>
+                    </div>
 
 
                     <div class="col-md-3 p-right single-right">
@@ -98,59 +103,60 @@
                 </div>
             </div>
         </div>
-                        
-                         <!--end-product-->
-      <!--start-footer-->
-      <div class="footer">
-        <div class="container">
-          <div class="footer-top">
-            <div class="col-md-3 footer-left">
-              <h3>ABOUT US</h3>
-              <ul>
-                <li><a href="#">Who We Are</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="#">Our Sites</a></li>
-                <li><a href="#">In The News</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Carrers</a></li>
-              </ul>
+
+        <!--end-product-->
+        <!--start-footer-->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="col-md-3 footer-left">
+                        <h3>ABOUT US</h3>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">Our Sites</a></li>
+                            <li><a href="#">In The News</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Carrers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-left">
+                        <h3>YOUR ACCOUNT</h3>
+                        <ul>
+                            <li><a href="account.html">Your Account</a></li>
+                            <li><a href="#">Personal Information</a></li>
+                            <li><a href="contact.html">Addresses</a></li>
+                            <li><a href="#">Discount</a></li>
+                            <li><a href="#">Track your order</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-left">
+                        <h3>CUSTOMER SERVICES</h3>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Cancellation</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Bulk Orders</a></li>
+                            <li><a href="#">Buying Guides</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-left">
+                        <h3>CATEGORIES</h3>
+                        <ul>
+                            <li><a href="#">Road</a></li>
+                            <li><a href="#">Mountain</a></li>
+                            <li><a href="#">Electric</a></li>
+                            <li><a href="#">Cyclocross</a></li>
+                            <li><a href="#">Urban & Commuter</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
             </div>
-            <div class="col-md-3 footer-left">
-              <h3>YOUR ACCOUNT</h3>
-              <ul>
-                <li><a href="account.html">Your Account</a></li>
-                <li><a href="#">Personal Information</a></li>
-                <li><a href="contact.html">Addresses</a></li>
-                <li><a href="#">Discount</a></li>
-                <li><a href="#">Track your order</a></li>
-              </ul>
-            </div>
-            <div class="col-md-3 footer-left">
-              <h3>CUSTOMER SERVICES</h3>
-              <ul>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Shipping</a></li>
-                <li><a href="#">Cancellation</a></li>
-                <li><a href="#">Returns</a></li>
-                <li><a href="#">Bulk Orders</a></li>
-                <li><a href="#">Buying Guides</a></li>
-              </ul>
-            </div>
-            <div class="col-md-3 footer-left">
-              <h3>CATEGORIES</h3>
-              <ul>
-                <li><a href="#">Road</a></li>
-                <li><a href="#">Mountain</a></li>
-                <li><a href="#">Electric</a></li>
-                <li><a href="#">Cyclocross</a></li>
-                <li><a href="#">Urban & Commuter</a></li>
-              </ul>
-            </div>
-            <div class="clearfix"> </div>
-          </div>
         </div>
-      </div>
-        <%=pageList.get(1).getContent()%>
+</section>
+<%=pageList.get(1).getContent()%>
 
 
 

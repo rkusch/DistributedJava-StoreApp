@@ -70,17 +70,18 @@ public class MainController extends HttpServlet {
         ProductService products = new ProductService("C:\\Users\\Ryan\\OneDrive - Waukesha County Technical College\\Distributed Java\\NamesApp_Store-RGK\\web\\productDB.txt");
         RequestDispatcher dispatcher = null;
         String id = request.getParameter("id");
+        String product = request.getParameter("product");
+        String cart = request.getParameter("cart");
         String search = request.getParameter("search");
 
-        if ("products".equals(id)) {
+        if ("all".equals(product)) {
             List<StaticPage> pageList = staticPageService.getAllStaticPages();
             List<Product> allProducts = products.getAllProducts();
             request.setAttribute("pageList", pageList);
             request.setAttribute("allProducts", allProducts);
             dispatcher = request.getRequestDispatcher("/products.jsp");
-
-            //go to nameDetail.jsp
-        } else if ("cart".equals(id)) {
+            //go to products.jsp
+        } else if ("current".equals(cart)) {
             List<StaticPage> pageList = staticPageService.getAllStaticPages();
             request.setAttribute("pageList", pageList);
             dispatcher = request.getRequestDispatcher("/cart.jsp");
@@ -95,7 +96,7 @@ public class MainController extends HttpServlet {
             List<StaticPage> pageList = staticPageService.getAllStaticPages();
             request.setAttribute("pageList", pageList);
             dispatcher = request.getRequestDispatcher("/home.jsp");
-            //go to nameList.jsp
+            //go to home.jsp
         }
         dispatcher.forward(request, response);
 
