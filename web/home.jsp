@@ -1,5 +1,5 @@
 <%-- 
-    Document   : homepage
+    Document   : home
     Created on : Feb 6, 2018, 6:40:49 PM
     Author     : ryan
 --%>
@@ -23,7 +23,7 @@
         <div class="header-content-inner">
             <h1>Explore the Outdoors</h1>
             <p>With bikes from Adventure Works, you have the power to explore the outdoors like never before. </p>
-            <a href="allProducts.php.html" class="btn btn-primary btn-lg">All Products</a>
+            <a href="?id=products" class="btn btn-primary btn-lg">All Products</a>
         </div>
     </div>
 </header>
@@ -65,7 +65,7 @@
             <div class="col-sm-6">
                 <h2 class="section-header">Orders</h2>
                 <p class="lead text-light">Our order history is sortable by the customer's name, city, state, as well as their overall total purchased.  </p>
-                <a href="orders.php.html" class="btn btn-default btn-lg">All Orders</a>
+                <a href="?id=orders" class="btn btn-default btn-lg">All Orders</a>
             </div>
             <div class="col-sm-6">
                 <img class="img-responsive img-circle center-block" src="images/iphone.jpg" alt="">

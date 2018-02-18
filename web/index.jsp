@@ -14,9 +14,10 @@
     <body>
         
             <h1> Welcome</h1>
-        <form method=get action="NameController">
-                <input type="text" name="search" />
+        <form method=get action="MainController">
+<!--                <input type="text" name="id" />-->
                 <input type="submit" value="Proceed"/>
         </form>
     </body>
 </html>
+ 

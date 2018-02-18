@@ -5,6 +5,8 @@
  */
 package edu.wctc.dj.week3.controller;
 
+import edu.wctc.dj.week3.model.Product;
+import edu.wctc.dj.week3.model.ProductService;
 import edu.wctc.dj.week3.model.StaticPage;
 import edu.wctc.dj.week3.model.StaticPageService;
 import java.io.IOException;
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ryan
  */
-public class NameController extends HttpServlet {
+public class MainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,36 +64,37 @@ public class NameController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String folder = "/Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/NamesApp_Store-RGK";
-        StaticPageService staticPageService = new StaticPageService("/Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/NamesApp_Store-RGK/web/header.html","/Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/NamesApp_Store-RGK/web/footer.html");
+        String macFolder = "/Users/ryan/OneDrive WCTC/OneDrive - Waukesha County Technical College/Distributed Java/NamesApp_Store-RGK";
+        String windowsFolder = "C:\\Users\\Ryan\\OneDrive - Waukesha County Technical College\\Distributed Java\\NamesApp_Store-RGK\\web";
+        StaticPageService staticPageService = new StaticPageService("C:\\Users\\Ryan\\OneDrive - Waukesha County Technical College\\Distributed Java\\NamesApp_Store-RGK\\web\\header.html", "C:\\Users\\Ryan\\OneDrive - Waukesha County Technical College\\Distributed Java\\NamesApp_Store-RGK\\web\\footer.html");
+        ProductService products = new ProductService("C:\\Users\\Ryan\\OneDrive - Waukesha County Technical College\\Distributed Java\\NamesApp_Store-RGK\\web\\productDB.txt");
         RequestDispatcher dispatcher = null;
         String id = request.getParameter("id");
         String search = request.getParameter("search");
 
-        if (id != null) {
-            StaticPage name = staticPageService.getID(id);
-            request.setAttribute("name", name);
-            dispatcher = request.getRequestDispatcher("/pageDetail.jsp");
+        if ("products".equals(id)) {
+            List<StaticPage> pageList = staticPageService.getAllStaticPages();
+            List<Product> allProducts = products.getAllProducts();
+            request.setAttribute("pageList", pageList);
+            request.setAttribute("allProducts", allProducts);
+            dispatcher = request.getRequestDispatcher("/products.jsp");
 
             //go to nameDetail.jsp
+        } else if ("cart".equals(id)) {
+            List<StaticPage> pageList = staticPageService.getAllStaticPages();
+            request.setAttribute("pageList", pageList);
+            dispatcher = request.getRequestDispatcher("/cart.jsp");
+            
         } else if (search != null) {
             List<StaticPage> pageList = staticPageService.findPages(search);
             request.setAttribute("pageList", pageList);
-            dispatcher = request.getRequestDispatcher("/pageList.jsp");
-
-            //go to nameDetail.jsp
-        } else if (search == "a") {
-            List<StaticPage> pageList = new ArrayList<StaticPage>();
-            StaticPage page3 = new StaticPage("4", "hello");
-            pageList.add(page3);
-            request.setAttribute("pageList", pageList);
-            dispatcher = request.getRequestDispatcher("/products.jsp");
+            dispatcher = request.getRequestDispatcher("/pageDetail.jsp");
 
             //go to nameDetail.jsp
         } else {
             List<StaticPage> pageList = staticPageService.getAllStaticPages();
             request.setAttribute("pageList", pageList);
-            dispatcher = request.getRequestDispatcher("/pageList.jsp");
+            dispatcher = request.getRequestDispatcher("/home.jsp");
             //go to nameList.jsp
         }
         dispatcher.forward(request, response);
