@@ -81,7 +81,17 @@ public class MainController extends HttpServlet {
             request.setAttribute("allProducts", allProducts);
             dispatcher = request.getRequestDispatcher("/products.jsp");
             //go to products.jsp
-        } else if ("current".equals(cart)) {
+        } else if (product != null && !("all".equals(product))) {
+            List<StaticPage> pageList = staticPageService.getAllStaticPages();
+            List<Product> allProducts = products.getAllProducts();
+            request.setAttribute("pageList", pageList);
+            request.setAttribute("allProducts", allProducts);
+            request.setAttribute("currentProductID", product);
+            dispatcher = request.getRequestDispatcher("/productDetails.jsp");
+            //go to productDetails.jsp
+        }
+        
+        else if ("current".equals(cart)) {
             List<StaticPage> pageList = staticPageService.getAllStaticPages();
             request.setAttribute("pageList", pageList);
             dispatcher = request.getRequestDispatcher("/cart.jsp");
