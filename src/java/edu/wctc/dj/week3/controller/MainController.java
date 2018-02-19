@@ -72,6 +72,7 @@ public class MainController extends HttpServlet {
         String id = request.getParameter("id");
         String product = request.getParameter("product");
         String cart = request.getParameter("cart");
+        String addToCart = request.getParameter("addToCart");
         String search = request.getParameter("search");
 
         if ("all".equals(product)) {
@@ -94,9 +95,20 @@ public class MainController extends HttpServlet {
         else if ("current".equals(cart)) {
             List<StaticPage> pageList = staticPageService.getAllStaticPages();
             request.setAttribute("pageList", pageList);
+            request.setAttribute("addedToCart", "noItems");
             dispatcher = request.getRequestDispatcher("/cart.jsp");
             
-        } else if (search != null) {
+        } else if (cart != null) {
+            List<StaticPage> pageList = staticPageService.getAllStaticPages();
+            List<Product> allProducts = products.getAllProducts();
+            request.setAttribute("pageList", pageList);
+            request.setAttribute("allProducts", allProducts);
+            request.setAttribute("addedToCart", cart);
+            dispatcher = request.getRequestDispatcher("/cart.jsp");
+            
+        } 
+        
+        else if (search != null) {
             List<StaticPage> pageList = staticPageService.findPages(search);
             request.setAttribute("pageList", pageList);
             dispatcher = request.getRequestDispatcher("/pageDetail.jsp");

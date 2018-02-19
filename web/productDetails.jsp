@@ -42,11 +42,11 @@
 
                             <div>
                                 <div class='p-one simpleCart_shelfItem'>
-                                    <a href='?product=<%=currentProduct.getId()  %>'>
+                                    <a href='?product=<%=currentProduct.getId()%>'>
                                         <img src='<%=currentProduct.getImageUrl()%>' height='500' width='380'>
                                     </a>
                                     <h4> <%=currentProduct.getName()%> </h4>
-                                    <p> $ <%=currentProduct.getPrice()%><a class='item_add' href='#'><i></i> <span class=' item_price'>  <i>Add To Cart </i></span></a> </p>
+                                    <p> $<%=currentProduct.getPrice()%><a class='item_add' href='?cart=<%=currentProduct.getId()%>'><i></i> <span class=' item_price'>  <i>Add To Cart </i></span></a> </p>
                                     <p> <%=currentProduct.getDescription()%> </p>
                                 </div>
                             </div>
